@@ -1,8 +1,7 @@
 FROM node:15.5.1-buster-slim
 
 WORKDIR /usr/app
-RUN apt-get update
-RUN apt-get install vim
+RUN apt-get update && apt-get install vim -y
 RUN npm install create-react-app
 RUN npx create-react-app react-app
 WORKDIR /usr/app/react-app
