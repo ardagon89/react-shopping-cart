@@ -4,7 +4,7 @@ WORKDIR /usr/app
 RUN npm install create-react-app
 RUN npx create-react-app react-app
 WORKDIR /usr/app/react-app
-COPY ./app/react-app/public /usr/app/react-app/public
-COPY ./app/react-app/src /usr/app/react-app/src
+# COPY ./app/react-app/public /usr/app/react-app/public
+# COPY ./app/react-app/src /usr/app/react-app/src
 
 CMD [ "yarn","start" ]
