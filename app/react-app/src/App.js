@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import NavBar from './components/navbar';
-import Counters from './components/counters';
-import './App.css';
+import React, { Component } from "react";
+import NavBar from "./components/navbar";
+import Counters from "./components/counters";
+import "./App.css";
 
 class App extends Component {
   state = {
@@ -13,7 +13,7 @@ class App extends Component {
     ],
   };
 
-  constructor(){
+  constructor() {
     super();
     console.log("App - Constructor");
     // Can set the state based on props
@@ -23,41 +23,50 @@ class App extends Component {
     // Also we cannot use setState here, as it can only be used when the component is rendered
   }
 
-  componentDidMount(){
+  componentDidMount() {
     // Can do an Ajax call to setState
     // this.setState({ data });
     console.log("App - Mounted");
   }
 
-  handleIncrement = counter => {
-    const counters = [...this.state.counters];  //Clone this list with ...
+  handleIncrement = (counter) => {
+    const counters = [...this.state.counters]; //Clone this list with ...
     const index = counters.indexOf(counter);
-    counters[index] = {...counter};             //Clone this obj with ...
+    counters[index] = { ...counter }; //Clone this obj with ...
     counters[index].value++;
-    this.setState({counters});
+    this.setState({ counters });
   };
 
   handleReset = () => {
-    const counters = this.state.counters.map(c => {
+    const counters = this.state.counters.map((c) => {
       c.value = 0;
       return c;
     });
     this.setState({ counters });
   };
 
-  handleDelete = counterId => {
-    const counters = this.state.counters.filter(c => c.id !== counterId);
-    this.setState({counters});
+  handleDelete = (counterId) => {
+    const counters = this.state.counters.filter((c) => c.id !== counterId);
+    this.setState({ counters });
   };
 
   render() {
     console.log("App - Rendered");
     return (
       <React.Fragment>
-      <NavBar totalCounters={this.state.counters.filter(c => c.value !== 0).length} />
-      <main className="container">
-        <Counters counters={this.state.counters} onReset={this.handleReset} onDelete={this.handleDelete} onIncrement={this.handleIncrement} />
-      </main>
+        <NavBar
+          totalCounters={
+            this.state.counters.filter((c) => c.value !== 0).length
+          }
+        />
+        <main className="container">
+          <Counters
+            counters={this.state.counters}
+            onReset={this.handleReset}
+            onDelete={this.handleDelete}
+            onIncrement={this.handleIncrement}
+          />
+        </main>
       </React.Fragment>
     );
   }
